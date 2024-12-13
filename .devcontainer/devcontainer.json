@@ -1,8 +1,27 @@
 // See https://containers.dev/implementors/json_reference/ for configuration reference
+// {
+// 	"name": "Coding Interview Backend Level 3",
+// 	"build": {
+// 		"dockerfile": "Dockerfile"
+// 	},
+//   "remoteUser": "node"
+// }
+// See https://containers.dev/implementors/json_reference/ for configuration reference
 {
 	"name": "Coding Interview Backend Level 3",
-	"build": {
-		"dockerfile": "Dockerfile"
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/usr/src/app",
+	"remoteUser": "node",
+	"runArgs": [
+		"--service-ports"
+	],
+	"postCreateCommand": "npm install",
+	"settings": {
+		"terminal.integrated.shell.linux": "/bin/bash"
 	},
-  "remoteUser": "node"
+	"extensions": [
+		"dbaeumer.vscode-eslint",
+		"esbenp.prettier-vscode"
+	]
 }

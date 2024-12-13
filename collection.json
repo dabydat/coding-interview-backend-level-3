@@ -1,0 +1,145 @@
+{
+    "info": {
+        "name": "Coding Interview Backend Level 3",
+        "_postman_id": "92323456-2333-1333-3577-314098464646",
+        "description": "Collection for testing the Coding Interview Backend Level 3 API",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Ping",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:4000/ping",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "4000",
+                    "path": [
+                        "ping"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "List Items",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:4000/items",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "4000",
+                    "path": [
+                        "items"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Create Item",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"name\": \"Item 1\",\n  \"price\": 10\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:4000/items",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "4000",
+                    "path": [
+                        "items"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Get Item by ID",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:4000/items/{{itemId}}",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "4000",
+                    "path": [
+                        "items",
+                        "{{itemId}}"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Update Item",
+            "request": {
+                "method": "PUT",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"name\": \"Item 1 updated\",\n  \"price\": 20\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:4000/items/{{itemId}}",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "4000",
+                    "path": [
+                        "items",
+                        "{{itemId}}"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Delete Item",
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:4000/items/{{itemId}}",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "4000",
+                    "path": [
+                        "items",
+                        "{{itemId}}"
+                    ]
+                }
+            },
+            "response": []
+        }
+    ]
+}
