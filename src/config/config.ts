@@ -11,6 +11,9 @@ const envSchema = Joi.object({
     DB_USERNAME: Joi.string().required(),
     DB_PASSWORD: Joi.string().required(),
     DB_DATABASE: Joi.string().required(),
+
+    HOST: Joi.string().default('localhost'),
+    PORT: Joi.number().default(5001),
 }).unknown();
 
 // Validar las variables de entorno
@@ -26,4 +29,8 @@ export const config = {
         password: envVars.DB_PASSWORD,
         database: envVars.DB_DATABASE,
     },
+    local: {
+        host: envVars.HOST,
+        port: envVars.PORT as number,
+    }
 };

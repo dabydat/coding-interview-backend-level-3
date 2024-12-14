@@ -2,15 +2,11 @@ import 'reflect-metadata';
 import Hapi from '@hapi/hapi';
 import { defineRoutes } from './routes';
 import { initializeDataSource } from './config/data-source';
+import { config } from './config/config';
 
 const getServer = () => {
-    const server = Hapi.server({
-        host: 'localhost',
-        port: 5000,
-    });
-
+    const server = Hapi.server(config.local);
     defineRoutes(server);
-
     return server;
 };
 
