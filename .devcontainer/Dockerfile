@@ -1,41 +1,24 @@
-FROM node:20
-
-# Install basic development tools
-RUN apt update && apt install -y less man-db sudo
-
-# Ensure default `node` user has access to `sudo`
-ARG USERNAME=node
-RUN echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
-    && chmod 0440 /etc/sudoers.d/$USERNAME
-
-# # Set `DEVCONTAINER` environment variable to help with orientation
-# ENV DEVCONTAINER=true
-
-# Crear y establecer el directorio de trabajo
+# Base image
+FROM node:20-alpine as base
 WORKDIR /usr/src/app
 
-# Copiar los archivos de configuración
+# Install dependencies
+FROM base as deps
 COPY ../package*.json ./
-COPY ../tsconfig.json ./
-COPY ../.env ./
+RUN npm ci
 
-# Instalar las dependencias
-RUN npm install
-
-# Copiar el resto de los archivos de la aplicación
-COPY ../ .
-
-# Compilar el proyecto
+# Build the application
+FROM deps as builder
+COPY ../ ./
 RUN npm run build
 
-# Eliminar dependencias de desarrollo
-RUN npm prune --production
-
-# Establecer la variable de entorno DEVCONTAINER
-ENV DEVCONTAINER=true
-
-# Exponer el puerto en el que la aplicación se ejecutará
-EXPOSE 4000
-
-# Comando para iniciar la aplicación
+# Production image
+FROM base as production
+ENV NODE_ENV=production
+COPY ../package*.json ./
+COPY ../package-lock.json ./
+RUN npm ci --only=production
+COPY --from=builder /usr/src/app/dist ./dist
+USER node
+EXPOSE 5000
 CMD ["node", "dist/index.js"]

@@ -6,7 +6,7 @@ import { initializeDataSource } from './config/data-source';
 const getServer = () => {
     const server = Hapi.server({
         host: 'localhost',
-        port: 4000,
+        port: 5000,
     });
 
     defineRoutes(server);

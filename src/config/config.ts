@@ -20,7 +20,7 @@ if (error) throw new Error(`Config validation error: ${error.message}`);
 // Exportar la configuración validada
 export const config = {
     db: {
-        host: envVars.DB_HOST,
+        host: envVars.DB_HOST ,
         port: envVars.DB_PORT as number,
         username: envVars.DB_USERNAME,
         password: envVars.DB_PASSWORD,

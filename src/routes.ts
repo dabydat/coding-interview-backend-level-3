@@ -7,6 +7,8 @@ export const defineRoutes = (server: Server) => {
             method: 'GET',
             path: '/ping',
             handler: (request, h) => {
+                console.log('pong');
+                
                 return { ok: true };
             },
         },
